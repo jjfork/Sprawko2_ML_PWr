@@ -48,7 +48,7 @@ figure(1)
 plot(ynn,'r');
 grid; hold on;
 title('1, sieć jednokierunkowa, newff');
-plot(fun,'b');
+plot(fun,'b--');
 legend('matching', 'input')
 mseValue1 = mse(fun,ynn);
 title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
@@ -58,23 +58,23 @@ plot(ynn1,'r');
 grid;
 hold on;
 title('1, sieć rekurencyjna, newelm');
-plot(fun,'b');
+plot(fun,'b--');
 legend('matching', 'input')
 mseValue2 = mse(fun,ynn1);
 title(['1, siec rekurencyjna, newlm, MSE = ', num2str(mseValue2)]);
 
 figure(3)
-plot(ynn2, 'r', 'LineWidth', 3);
+plot(ynn2, 'r-');
 grid;
 hold on;
 title('1', 'newrb vs newrbe');
-plot(ynn3, 'g-', 'LineWidth',4)
-plot(fun, 'b--', 'LineWidth',2);
+plot(ynn3, 'g-')
+plot(fun, 'b--');
 legend('rbf', 'rbfe', 'function');
 e1=mse(fun, ynn2);
 e2=mse(fun, ynn3);
 
-% Add e1 and e2 to the figure
+
 text(1, 1, ['e1 = ', num2str(e1)]);
 text(1, 0.9, ['e2 = ', num2str(e2)]);
 
