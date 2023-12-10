@@ -26,10 +26,10 @@ siec=train(siec,x,fun);
 ynn=sim(siec,x);
 %%%
 x2seq=con2seq(x2);
-sseq=con2seq(fun);
+funseq=con2seq(fun);
 
 nn_elm_model=newelm(x2,fun,10);
-nn_elm_model = train(nn_elm_model,x2seq,sseq);
+nn_elm_model = train(nn_elm_model,x2seq,funseq);
 
 ynn1=nn_elm_model(x2seq);
 ynn1=cell2mat(ynn1);
@@ -64,8 +64,17 @@ mseValue2 = mse(fun,ynn1);
 title(['1, siec rekurencyjna, newlm, MSE = ', num2str(mseValue2)]);
 
 figure(3)
-plot(ynn2, 'r', 'LineWidth', 4);
+plot(ynn2, 'r', 'LineWidth', 3);
 grid;
 hold on;
-title
+title('1', 'newrb vs newrbe');
+plot(ynn3, 'g-', 'LineWidth',4)
+plot(fun, 'b--', 'LineWidth',2);
+legend('rbf', 'rbfe', 'function');
+e1=mse(fun, ynn2);
+e2=mse(fun, ynn3);
+
+% Add e1 and e2 to the figure
+text(1, 1, ['e1 = ', num2str(e1)]);
+text(1, 0.9, ['e2 = ', num2str(e2)]);
 
