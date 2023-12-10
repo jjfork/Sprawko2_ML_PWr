@@ -68,7 +68,7 @@ figure(3)
 plot(ynn2, 'r-');
 grid;
 hold on;
-title('1', 'newrb vs newrbe');
+title('2', 'newrb vs newrbe');
 plot(ynn3, 'g-')
 plot(fun, 'b--');
 legend('rbf', 'rbfe', 'function');
