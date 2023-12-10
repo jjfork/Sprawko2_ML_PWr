@@ -47,18 +47,25 @@ ynn3=sim(NN_model_rbfe,x2);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title('2, sieć jednokierunkowa, newff');
+title('1, sieć jednokierunkowa, newff');
 plot(fun,'b');
 legend('matching', 'input')
 mseValue1 = mse(fun,ynn);
-title(['2, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
+title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
 
 figure(2)
 plot(ynn1,'r');
 grid;
 hold on;
-title('2, sieć rekurencyjna, newelm');
+title('1, sieć rekurencyjna, newelm');
 plot(fun,'b');
 legend('matching', 'input')
 mseValue2 = mse(fun,ynn1);
-title(['2, siec rekurencyjna, newlm, MSE = ', num2str(mseValue2)]);
+title(['1, siec rekurencyjna, newlm, MSE = ', num2str(mseValue2)]);
+
+figure(3)
+plot(ynn2, 'r', 'LineWidth', 4);
+grid;
+hold on;
+title
+
