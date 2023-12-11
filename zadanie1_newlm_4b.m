@@ -17,7 +17,7 @@ liczba_n_o=1;
 layers = [liczba_n_h1 liczba_n_h2 liczba_n_o];
 liczba_warstw_ukrytych = length(layers) - 1;
 liczba_epochs = 100;
-fun_act = 'purelin';
+fun_act = 'tansig';
 learning_met = 'trainlm';
 
 
@@ -31,7 +31,7 @@ ynn=sim(siec,x);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title1= '1_2b, sieć rekurencyjna - funkcja aktywacyjna, newelm';
+title1 = '1_4b, sieć rekurencyjna - metoda uczenia, newelm';
 plot(fun,'b--');
 legend('target', 'input')
 mseValue1 = mse(fun,ynn);
