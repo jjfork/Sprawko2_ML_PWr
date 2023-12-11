@@ -1,4 +1,3 @@
-
 clear all
 close all
 clc
@@ -49,7 +48,7 @@ plot(ynn,'r');
 grid; hold on;
 title('1, sieć jednokierunkowa, newff');
 plot(fun,'b--');
-legend('matching', 'input')
+legend('target', 'input')
 mseValue1 = mse(fun,ynn);
 title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
 
@@ -59,7 +58,7 @@ grid;
 hold on;
 title('1, sieć rekurencyjna, newelm');
 plot(fun,'b--');
-legend('matching', 'input')
+legend('target', 'input')
 mseValue2 = mse(fun,ynn1);
 title(['1, siec rekurencyjna, newlm, MSE = ', num2str(mseValue2)]);
 
