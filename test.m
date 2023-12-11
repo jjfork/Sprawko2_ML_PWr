@@ -1,36 +1,29 @@
-clear all % Clear all variables from the workspace
-close all % Close all figures
-clc % Clear the command window
+x1=-10:0.1:10;
+x2=-9.9:0.1:10.1;
+x= [x1;x2];
+fun=sin(x1);
 
-x = linspace(0,10,201);
-x1 = x(1:200);
-x2 = x(2:201);
+range=[-20 20];
+liczba_n_h1=30;
+liczba_n_h2=20;
+liczba_n_h3=10;
+liczba_n_o=1;
+liczba_epochs = 50;
+fun_act = 'tansig';
 
-a = 1;
+siec=newelm([range; range],[liczba_n_h1 liczba_n_h2 liczba_n_h3 liczba_n_o],{fun_act,fun_act,fun_act,'purelin'},'trainlm');
+siec.trainParam.epochs= liczba_epochs;
+siec.trainParam.goal=0;
 
-y1 = a * x1;
-y2 = a * x2;
-y_sin = (sin(2 * x1) + 0.2 * sin(8 * x1)) .* exp(-x1);
+siec=train(siec,x,fun);
+ynn=sim(siec,x);
 
-X = [y1; y2];
-
-plot(y1, 'k'); grid on; hold on;
-plot(y2, 'k'); hold on;
-plot(x1,y_sin);
-
-zakres = [-20 20];
-liczba_n_h1 = 30;
-liczba_n_o = 1;
-
-siec = newff([zakres; zakres], [liczba_n_h1 liczba_n_o], {'tansig', 'purelin'}, 'trainlm');
-siec.trainParam.epochs = 200;
-siec.trainParam.goal = 1e-5;
-%%%%%%%%%%
-siec = train(siec, X, y_sin);
-%%%%%%%%%%
-ynn = sim(siec, X);
-
-figure(2)
-plot(y_sin, 'k');grid on; hold on;
-plot(ynn, 'r')
-
+% Plot the function, the network's approximation, and the error
+figure(1)
+plot(ynn,'r');
+grid; hold on;
+title('1, sieć jednokierunkowa, newff');
+plot(fun,'b--');
+legend('target', 'input')
+mseValue1 = mse(fun,ynn);
+title('1, siec jednokierunkowa, newff ',['MSE = ' num2str(mseValue1), ' epochs = ' num2str(liczba_epochs), ' funkcja aktywacyjna = ' num2str(fun_act)]);
