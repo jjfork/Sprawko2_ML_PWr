@@ -14,45 +14,89 @@ liczba_n_h1 = 100;
 liczba_n_o = 2;
 
 % newff()
-net_newff = newff([min(fun(:,1)) max(fun(:,1)); min(fun(:,2)) max(fun(:,2))], [liczba_n_h1 liczba_n_o]);
+siec=newff([zakres; zakres],[liczba_n_h1 liczba_n_o],{'tansig','purelin'},'trainlm');
+siec.trainParam.epochs=100;
+siec.trainParam.goal=0;
+
+siec=train(siec,y',fun');
+ynn=sim(siec,y');
+
+figure(1)
+plot(y(:, 1)','b');
+grid; hold on;
+title('1, sieć jednokierunkowa, newff');
+plot(ynn,'b--');
+legend('matching', 'input')
+mseValue1 = mse(fun,ynn);
+title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
 
 % newelm()
-net_newelm = newelm([min(fun(:,1)) max(fun(:,1)); min(fun(:,2)) max(fun(:,2))], [liczba_n_h1, liczba_n_o]);
+net_newelm=newelm([zakres; zakres],[liczba_n_h1 liczba_n_o],{'tansig','purelin'},'trainlm');
+net_newelm.trainParam.epochs=100;
+net_newelm.trainParam.goal=0; %%czemu to tak długo działa
+
+siec=train(net_newelm,y',fun');
+ynn2=sim(siec,y');
+
+figure(2)
+plot(y(:, 1),'b');
+grid; hold on;
+title('1, sieć jednokierunkowa, newff');
+plot(y_pred_newrbe,'b--');
+legend('matching', 'input')
+mseValue1 = mse(y',y_pred_newrbe);
+title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
+
 
 % newrb()
 net_newrb = newrb(fun', y', 0.0, 1.0, liczba_n_h1);
+y_pred_newrb = sim(net_newrb, fun');
+
+figure(3)
+plot(y(:, 1),'b');
+grid; hold on;
+title('1, sieć jednokierunkowa, newff');
+plot(y_pred_newrb,'b--');
+legend('matching', 'input')
+mseValue1 = mse(y',y_pred_newrb);
+title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
 
 % newrbe()
 net_newrbe = newrbe(fun', y');
-
-% Predykcje dla danych wejściowych
-y_pred_newff = sim(net_newff, fun');
-y_pred_newelm = sim(net_newelm, fun');
-y_pred_newrb = sim(net_newrb, fun');
 y_pred_newrbe = sim(net_newrbe, fun');
 
+figure(4)
+plot(y(:, 1),'b');
+grid; hold on;
+title('1, sieć jednokierunkowa, newff');
+plot(y_pred_newrbe,'b--');
+legend('matching', 'input')
+mseValue1 = mse(y',y_pred_newrbe);
+title(['1, siec jednokierunkowa, newff, MSE = ', num2str(mseValue1)]);
+
+
 % Obliczanie błędów MSE
-mse_newff = mse(y' - y_pred_newff);
-mse_newelm = mse(y' - y_pred_newelm);
+mse_newff = mse(y' - ynn);
+%mse_newelm = mse(y' - ynn2);
 mse_newrb = mse(y' - y_pred_newrb);
 mse_newrbe = mse(y' - y_pred_newrbe);
 
 % Wypisywanie błędów MSE
 disp(['MSE dla newff(): ' num2str(mse_newff)]);
-disp(['MSE dla newelm(): ' num2str(mse_newelm)]);
+%disp(['MSE dla newelm(): ' num2str(mse_newelm)]);
 disp(['MSE dla newrb(): ' num2str(mse_newrb)]);
 disp(['MSE dla newrbe(): ' num2str(mse_newrbe)]);
 
 % Plotowanie wyników
-figure;
+figure(5);
 
 subplot(2, 2, 1);
-plot(fun(:, 1), y(:, 1), 'b', fun(:, 1), y_pred_newff, 'r');
+plot(fun(:, 1), y(:, 1), 'b', fun(:, 1), ynn, 'r');
 title('newff()');
 
-subplot(2, 2, 2);
-plot(fun(:, 1), y(:, 1), 'b', fun(:, 1), y_pred_newelm, 'g');
-title('newelm()');
+%subplot(2, 2, 2);
+%plot(fun(:, 1), y(:, 1), 'b', fun(:, 1), ynn2, 'g');
+%title('newelm()');
 
 subplot(2, 2, 3);
 plot(fun(:, 1), y(:, 1), 'b', fun(:, 1), y_pred_newrb, 'm');

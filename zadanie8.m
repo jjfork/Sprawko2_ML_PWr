@@ -122,10 +122,10 @@ siec.trainParam.goal = 0;
 siec = train(siec, in_data_train', out_data_train');
 ynn = sim(siec,in_data_train');
 % view(siec) % diagram
-figure(2);
+figure(1);
 plot(out_data_train,'xb'); hold on; grid on
 plot(ynn,'or')
-
+legend('matching', 'input')
 
 %%%
 siec = newelm(in_data_train', out_data_train', 10);
@@ -135,28 +135,29 @@ siec = train(siec, in_data_train', out_data_train');
 ynn1 = sim(siec, in_data_train');
 
 % Plot results
-figure(3);
+figure(2);
 plot(out_data_train', 'xb'); hold on; grid on
-plot(ynn1', 'or')
+plot(ynn1, 'or')
+legend('matching', 'input')
 
 %%%
 siec_rb = newrb(in_data_train', out_data_train', 0, 1, liczba_n_h1);
-siec = train(siec, in_data_train', out_data_train');
-ynn2 = sim(siec, in_data_train');
+ynn2 = sim(siec_rb, in_data_train');
+
+% Plot results
+figure(3);
+plot(out_data_train', 'xb'); hold on; grid on
+plot(ynn2', 'or')
+legend('matching', 'input')
+
+
+%%%
+siec_rbe = newrbe(in_data_train', out_data_train');
+ynn2 = sim(siec_rbe, in_data_train');
 
 % Plot results
 figure(4);
 plot(out_data_train', 'xb'); hold on; grid on
 plot(ynn2', 'or')
-
-%%%
-siec_rbe = newrbe(in_data_train', out_data_train');
-siec = train(siec, in_data_train', out_data_train');
-ynn2 = sim(siec, in_data_train');
-
-% Plot results
-figure(5);
-plot(out_data_train', 'xb'); hold on; grid on
-plot(ynn2', 'or')
-
+legend('matching', 'input')
 
