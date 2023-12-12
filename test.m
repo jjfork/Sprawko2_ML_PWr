@@ -1,36 +1,34 @@
-clear all % Clear all variables from the workspace
-close all % Close all figures
-clc % Clear the command window
+x1=-10:0.1:10;
+x2=-9.9:0.1:10.1;
+x= [x1;x2];
+fun=sin(x1);
 
-x = linspace(0,10,201);
-x1 = x(1:200);
-x2 = x(2:201);
+range=[-20 20];
+liczba_n_h1=30;
+liczba_n_h2=20; % Add this line to define the number of neurons in the second hidden layer
+liczba_n_h3=0;
+liczba_n_o=1;
+layers = [liczba_n_h1 liczba_n_h2 liczba_n_o]; % Modify this line to include the second hidden layer
+liczba_epochs = 100;
+fun_act = 'tansig';
 
-a = 1;
+siec=newelm([range; range],layers,{fun_act,fun_act, 'purelin'},'trainlm');
+siec.trainParam.epochs= liczba_epochs;
+siec.trainParam.goal=0;
 
-y1 = a * x1;
-y2 = a * x2;
-y_sin = (sin(2 * x1) + 0.2 * sin(8 * x1)) .* exp(-x1);
+siec=train(siec,x,fun);
+ynn=sim(siec,x);
 
-X = [y1; y2];
+figure(1)
+plot(ynn,'r');
+grid; hold on;
+title('1, sieć jednokierunkowa, newff');
+plot(fun,'b--');
+legend('target', 'input')
+mseValue1 = mse(fun,ynn);
+title('1, siec jednokierunkowa, newff',['MSE = ' num2str(mseValue1), ' epochs = ' num2str(liczba_epochs), ' funkcja aktywacyjna = ' num2str(fun_act)]);
 
-plot(y1, 'k'); grid on; hold on;
-plot(y2, 'k'); hold on;
-plot(x1,y_sin);
-
-zakres = [-20 20];
-liczba_n_h1 = 30;
-liczba_n_o = 1;
-
-siec = newff([zakres; zakres], [liczba_n_h1 liczba_n_o], {'tansig', 'purelin'}, 'trainlm');
-siec.trainParam.epochs = 200;
-siec.trainParam.goal = 1e-5;
-%%%%%%%%%%
-siec = train(siec, X, y_sin);
-%%%%%%%%%%
-ynn = sim(siec, X);
-
-figure(2)
-plot(y_sin, 'k');grid on; hold on;
-plot(ynn, 'r')
-
+text(10, 0.9, ['liczba_n_h1 = ', num2str(liczba_n_h1)]);
+text(10, 0.8, ['liczba_n_h2 = ', num2str(liczba_n_h2)]);
+text(10, 0.7, ['liczba_n_h3 = ', num2str(liczba_n_h3)]);
+text(10, 0.6, ['Ilość neuronów = ', num2str(liczba_n_h1 + liczba_n_h2 + liczba_n_h3)], 'Color', 'k');
