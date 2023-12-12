@@ -130,9 +130,10 @@ ynn = sim(siec_rb, in_data_train');
 figure(3);
 plot(out_data_train', 'xb'); hold on; grid on
 grid; hold on;
-title('1, sieć jednokierunkowa, newff');
+title('4d, sieć jednokierunkowa, newrb');
 plot(ynn', 'or')
 legend('target', 'input')
 mseValue1 = mse(out_data_train', ynn);
-title('1a siec jednokierunkowa, newff',['MSE = ' num2str(mseValue1), ' #neuronow = ' num2str(liczba_neuronow), ' #czynniku = ' num2str(czynnik), ' rozrzut = ' num2str(SPREAD)]);
+title('4d siec jednokierunkowa, newrb',['MSE = ' num2str(mseValue1), ' #neuronow = ' num2str(liczba_neuronow), ' #czynniku = ' num2str(czynnik), ' rozrzut = ' num2str(SPREAD)]);
+
 
