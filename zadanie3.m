@@ -11,10 +11,8 @@ y2=x2;
 
 
 fun=exp(sin(x1)+0.1*sin(5*x1));
-
-[x, xn] = mapminmax(x);
-[fun, fun_n] = mapminmax(fun);
-
+x = mapminmax(x);
+fun = mapminmax(fun);
 
 %%%
 range=[-20 20];
@@ -32,7 +30,7 @@ ynn=sim(siec,x);
 x2seq=con2seq(x2);
 funseq=con2seq(fun);
 
-nn_elm_model=newelm(x2,fun,10);
+nn_elm_model=newelm(x2,fun,20);
 nn_elm_model = train(nn_elm_model,x2seq,funseq);
 
 ynn1=nn_elm_model(x2seq);

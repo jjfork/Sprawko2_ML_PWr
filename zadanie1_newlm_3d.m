@@ -31,7 +31,7 @@ ynn=sim(siec,x);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title1 = '1_3d, sieć rekurencyjna - metoda uczenia, newelm';
+title1 = '1_3d, sieć rekurencyjna - newelm - metoda uczenia ';
 plot(fun,'b--');
 legend('target', 'input')
 mseValue1 = mse(fun,ynn);

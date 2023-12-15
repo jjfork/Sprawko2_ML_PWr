@@ -31,13 +31,13 @@ ynn=sim(siec,x);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title1='1_2a, sieć rekurencyjna - funkcja aktywacyjna, newelm';
+title1='1_2a, sieć rekurencyjna - newelm - funkcja aktywacyjna';
 plot(fun,'b--');
 legend('target', 'input')
 mseValue1 = mse(fun,ynn);
 
 titleString = sprintf(['%s\nMSE = %d\nLiczba epok ' ...
-    '= %d\nFunkcja aktywacyjna = %s\nIlość neuronów w sieci = %d\nMetoda uczenia = %s\nLiczba warstw ukrytych = %d\n'], ...
+    '= %d\nFunkcja aktywacyjna = %s\nIlość neuronów w sieci = %d\nMetoda uczenia = %s\nLiczba wartsw ukrytych = %d\n'], ...
     title1, mseValue1, liczba_epochs, fun_act, liczba_n_h1 + liczba_n_h2 + liczba_n_h3, learning_met, liczba_warstw_ukrytych);
 
 

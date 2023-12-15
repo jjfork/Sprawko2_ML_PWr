@@ -31,7 +31,7 @@ ynn=sim(siec,x);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title1='1_2c, sieć rekurencyjna - funkcja aktywacyjna, newelm';
+title1='1_2c, sieć rekurencyjna - newelm - funkcja aktywacyjna';
 plot(fun,'b--');
 legend('target', 'input')
 mseValue1 = mse(fun,ynn);

@@ -27,11 +27,12 @@ ynn=sim(siec,x);
 x2seq=con2seq(x2);
 funseq=con2seq(fun);
 
-nn_elm_model=newelm(x2,fun,10);
-nn_elm_model = train(nn_elm_model,x2seq,funseq);
+nn_elm_model=newelm([range; range],[liczba_n_h1 liczba_n_h2 liczba_n_o],{'tansig','tansig','tansig','purelin'},'trainlm');
+nn_elm_model.trainParam.epochs=100;
+nn_elm_model.trainParam.goal=0;
 
-ynn1=nn_elm_model(x2seq);
-ynn1=cell2mat(ynn1);
+nn_elm_model=train(nn_elm_model,x,fun);
+ynn1=sim(nn_elm_model,x);
 %%%
 MN=10;
 DF=3;
