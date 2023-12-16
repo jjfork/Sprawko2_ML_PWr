@@ -38,7 +38,7 @@ mse_value = mse(fun_values, simulated_values);
 figure(1)
 plot(simulated_values, 'r');
 grid; hold on;
-title1 = '3_1c, sieć jednokierunkowa - newff- metoda uczenia';
+title1 = '3_1c, sieć jednokierunkowa - newff- struktura sieci';
 plot(fun_values, 'b--');
 legend('target', 'input');
 

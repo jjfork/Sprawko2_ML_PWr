@@ -13,8 +13,9 @@ range=[-20 20];
 liczba_n_h1=30;
 liczba_n_h2=20;
 liczba_n_h3=10;
+liczba_n_h4=10;
 liczba_n_o=1;
-layers = [liczba_n_h1 liczba_n_h2 liczba_n_h3 liczba_n_o];
+layers = [liczba_n_h1 liczba_n_h2 liczba_n_h3 liczba_n_h4 liczba_n_o];
 liczba_warstw_ukrytych = length(layers) - 1;
 liczba_epochs = 100;
 fun_act = 'tansig';
@@ -31,14 +32,14 @@ ynn=sim(siec,x);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title1='1_1c, sieć rekurencyjna - struktura sieci, newelm';
+title1='1_1d, sieć rekurencyjna - struktura sieci, newelm';
 plot(fun,'b--');
 legend('target', 'input')
 mseValue1 = mse(fun,ynn);
 
 titleString = sprintf(['%s\nMSE = %d\nLiczba epok ' ...
     '= %d\nFunkcja aktywacyjna = %s\nIlość neuronów w sieci = %d\nMetoda uczenia = %s\nLiczba warstw ukrytych = %d\n'], ...
-    title1, mseValue1, liczba_epochs, fun_act, liczba_n_h1 + liczba_n_h2 + liczba_n_h3, learning_met, liczba_warstw_ukrytych);
+    title1, mseValue1, liczba_epochs, fun_act, liczba_n_h1 + liczba_n_h2 + liczba_n_h3 + liczba_n_h4, learning_met, liczba_warstw_ukrytych);
 
 
 title(titleString);

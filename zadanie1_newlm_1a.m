@@ -31,7 +31,7 @@ ynn=sim(siec,x);
 figure(1)
 plot(ynn,'r');
 grid; hold on;
-title1 ='1_1a, sieć rekurencyjna - liczba ukrytych wartsw, newelm';
+title1 ='1_1a, sieć rekurencyjna - struktura sieci, newelm';
 plot(fun,'b--');
 legend('target', 'input')
 mseValue1 = mse(fun,ynn);

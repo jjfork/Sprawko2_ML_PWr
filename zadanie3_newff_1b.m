@@ -15,10 +15,10 @@ fun_values = mapminmax(fun_values);
 
 range=[-20 20];
 liczba_n_h1=15;
-liczba_n_h2=0;
+liczba_n_h2=20;
 liczba_n_h3=0;
 liczba_n_o=1;
-layers = [liczba_n_h1 liczba_n_o];
+layers = [liczba_n_h1 liczba_n_h2 liczba_n_o];
 liczba_warstw_ukrytych = length(layers) - 1;
 liczba_epochs = 100;
 fun_act = 'tansig';
@@ -38,7 +38,7 @@ mse_value = mse(fun_values, simulated_values);
 figure(1)
 plot(simulated_values, 'r');
 grid; hold on;
-title1 = '3_1b, sieć jednokierunkowa - newff- metoda uczenia';
+title1 = '3_1b, sieć jednokierunkowa - newff- struktura sieci';
 plot(fun_values, 'b--');
 legend('target', 'input');
 

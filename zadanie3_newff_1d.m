@@ -14,20 +14,22 @@ x_values = mapminmax(x_values);
 fun_values = mapminmax(fun_values);
 
 range=[-20 20];
-liczba_n_h1=15;
-liczba_n_h2=0;
-liczba_n_h3=0;
+liczba_n_h1=30;
+liczba_n_h2=20;
+liczba_n_h3=10;
+liczba_n_h4=10;
 liczba_n_o=1;
-layers = [liczba_n_h1 liczba_n_o];
+layers = [liczba_n_h1 liczba_n_h2 liczba_n_h3 liczba_n_h4 liczba_n_o];
 liczba_warstw_ukrytych = length(layers) - 1;
 liczba_epochs = 100;
 fun_act = 'tansig';
 learning_met = 'trainlm';
 
 
-siec=newff([range; range],layers,{fun_act,fun_act, 'purelin'},learning_met);
+siec=newff([range; range],layers,{fun_act,fun_act,fun_act,fun_act, 'purelin'},learning_met);
 siec.trainParam.epochs= liczba_epochs;
 siec.trainParam.goal=0;
+
 siec = train(siec, x_values, fun_values);
 
 simulated_values = sim(siec, x_values);
@@ -37,13 +39,13 @@ mse_value = mse(fun_values, simulated_values);
 figure(1)
 plot(simulated_values, 'r');
 grid; hold on;
-title1 = '3_1a, sieć jednokierunkowa - newff- struktura sieci';
+title1 = '3_1d, sieć jednokierunkowa - newff- struktura sieci';
 plot(fun_values, 'b--');
 legend('target', 'input');
 
 
 titleString = sprintf(['%s\nMSE = %d\nLiczba epok ' ...
     '= %d\nFunkcja aktywacyjna = %s\nIlość neuronów w sieci = %d\nMetoda uczenia = %s\nLiczba warstw ukrytych = %d\n'], ...
-    title1, mse_value, liczba_epochs, fun_act, liczba_n_h1 + liczba_n_h2 + liczba_n_h3, learning_met, liczba_warstw_ukrytych);
+    title1, mse_value, liczba_epochs, fun_act, liczba_n_h1 + liczba_n_h2 + liczba_n_h3 + liczba_n_h4, learning_met, liczba_warstw_ukrytych);
 
 title(titleString);
